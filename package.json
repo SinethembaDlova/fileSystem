@@ -1,0 +1,25 @@
+{
+  "name": "filesystem",
+  "version": "1.0.0",
+  "description": "A node project playing with the nodeJS file system library.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha 'tests/**/*.js' --timeout 60000 --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SinethembaDlova/fileSystem.git"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "fs"
+  ],
+  "author": "Sinethemba Dlova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SinethembaDlova/fileSystem/issues"
+  },
+  "homepage": "https://github.com/SinethembaDlova/fileSystem#readme"
+}
