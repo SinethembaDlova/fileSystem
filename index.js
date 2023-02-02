@@ -11,17 +11,23 @@ fs.writeFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'Hello World, my 
         if (err) throw err;
         console.log('Succefully appended in a file.');
 
-        // read the file created with fs readFile and played with the data.
-        fs.readFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'utf-8', (err, text) => {
-            if (err) throw err;
-            console.log('text: ', text);
-            const list = text.split(' ');
-            console.log('# of words: ', list.length)
-            list.map((word, index) => {
-            console.log(index + ": " + word);
-        });
+        fs.rename(path.join(__dirname, '/src/assets/', 'file.txt'), path.join(__dirname, '/src/assets/', 'newFile.txt'), (err) =>{
+            if (err) throw err
+
+            console.log('Successfully renamed the file')
+        })
     })
-    })
+})
+
+// read the file created with fs readFile and played with the data.
+ fs.readFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'utf-8', (err, text) => {
+    if (err) throw err;
+    console.log('text: ', text);
+    const list = text.split(' ');
+    console.log('# of words: ', list.length)
+    list.map((word, index) => {
+    console.log(index + ": " + word);
+    });
 })
 
 
