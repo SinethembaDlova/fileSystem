@@ -1,4 +1,3 @@
-const { error } = require('console');
 const fs = require('fs')
 
 fs.writeFile('./src/assets/file.txt', 'Hello World, my name is Sinethemba Dlova', (err) => {
@@ -8,5 +7,10 @@ fs.writeFile('./src/assets/file.txt', 'Hello World, my name is Sinethemba Dlova'
     fs.readFile('./src/assets/file.txt', 'utf-8', (err, text) => {
         if (err) throw err;
         console.log('text: ', text);
+        const list = text.split(' ');
+        console.log('# of words: ', list.length)
+        list.map((word, index) => {
+            console.log(index + ": " + word);
+        });
     })
-});
+})
