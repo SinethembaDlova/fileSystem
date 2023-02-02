@@ -1,37 +1,30 @@
-const fs = require('fs');
+const fsPromise = require('fs').promises;
 const path = require('path');
 
-// Create a file with fs writeFile function and wrote on it.
-fs.writeFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'Hello World, my name is Sinethemba Dlova', (err) => {
-    if (err) throw err;
-    console.log('Succefully wrote in a file.');
+const fileOperations = async () => {
+    try {
+        // read the file created with fs promises readFile function.
+        const data = await fsPromise.readFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'utf-8');
+        console.log('data: ', data);
 
-    // Added more text with fs appendFIle .
-    fs.appendFile(path.join(__dirname, '/src/assets/', 'file.txt'), '\n I love programming', (err) => {
-        if (err) throw err;
-        console.log('Succefully appended in a file.');
+        // Created a file with fs writeFile function and wrote on it.
+        await fsPromise.writeFile(path.join(__dirname, '/src/assets/', 'uefa.txt'), 'I am such a football lover');
+        console.log('Succefully wrote in a file.');
 
-        fs.rename(path.join(__dirname, '/src/assets/', 'file.txt'), path.join(__dirname, '/src/assets/', 'newFile.txt'), (err) =>{
-            if (err) throw err
+        // Appending more text with fsPromise appendFIle function.
+        await fsPromise.appendFile(path.join(__dirname, '/src/assets/', 'uefa.txt'), '\n and I am a Chelsea fan');
+        console.log('Succefully appended in the file.');
 
-            console.log('Successfully renamed the file')
-        })
-    })
-})
+        // Renaming a file with fsPromise remanch function.
+        await fsPromise.rename(path.join(__dirname, '/src/assets/', 'uefa.txt'), path.join(__dirname, '/src/assets/', 'football.txt'))
+        console.log('Successfully renamed the file.');
 
-// read the file created with fs readFile and played with the data.
- fs.readFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'utf-8', (err, text) => {
-    if (err) throw err;
-    console.log('text: ', text);
-    const list = text.split(' ');
-    console.log('# of words: ', list.length)
-    list.map((word, index) => {
-    console.log(index + ": " + word);
-    });
-})
+        const newData = await fsPromise.readFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'utf-8');
+        console.log('data: ', newData);
 
+    } catch (err) {
+        console.error(err);
+    }
+}
 
-process.on('uncaughtException', err => {
-    console.error('There was an uncaught error: ', err)
-    process.exit(1)
-})
+fileOperations();
