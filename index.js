@@ -15,3 +15,8 @@ fs.writeFile(path.join(__dirname, '/src/assets/', 'file.txt'), 'Hello World, my 
         });
     })
 })
+
+process.on('uncaughtException', err => {
+    console.error('There was an uncaught error: ', err)
+    process.exit(1)
+})
